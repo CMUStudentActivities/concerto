@@ -4,7 +4,6 @@ log/*.log
 tmp/
 .sass-cache/
 tmp/restart.txt
-config/database.yml
 public/.htaccess
 .DS_Store
 doc/app/*
@@ -12,9 +11,6 @@ public/assets/*
 public/frontend_js/compiler.jar
 vendor/bundle/
 doc/coverage/*
-.ruby-version
-.ruby-gemset
 .powrc
 Gemfile-plugins.bak
-Gemfile.local
 *.sublime*

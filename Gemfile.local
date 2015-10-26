@@ -1,0 +1,8 @@
+group :development do
+
+  # Use Capistrano for deployment
+  gem 'rvm1-capistrano3', require: false
+  gem "capistrano-bundler"
+  gem "capistrano-rails"
+  gem "capistrano-passenger"
+end
