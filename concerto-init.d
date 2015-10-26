@@ -10,8 +10,8 @@
 ### END INIT INFO
 
 #CONCERTO USERS: SET THESE DEFAULTS ACCORDING TO YOUR SYSTEM CONFIGURATION
-USERNAME=www-data
-CONCERTODIR=/usr/share/concerto
+USERNAME=deploy
+CONCERTODIR=/srv/rails/concert/current
 RAILS_ENVIRONMENT=production
 
 # PATH should only include /usr/* if it runs after the mountnfs.sh script
