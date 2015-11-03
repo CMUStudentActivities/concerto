@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150821230410) do
+ActiveRecord::Schema.define(version: 20151027155156) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -26,9 +26,9 @@ ActiveRecord::Schema.define(version: 20150821230410) do
     t.datetime "updated_at"
   end
 
-  add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type"
-  add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type"
-  add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type"
+  add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
+  add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
+  add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
 
   create_table "concerto_configs", force: true do |t|
     t.string  "key"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20150821230410) do
     t.string  "select_values"
   end
 
-  add_index "concerto_configs", ["key"], name: "index_concerto_configs_on_key", unique: true
+  add_index "concerto_configs", ["key"], name: "index_concerto_configs_on_key", unique: true, using: :btree
 
   create_table "concerto_hardware_players", force: true do |t|
     t.string   "ip_address"
@@ -55,6 +55,14 @@ ActiveRecord::Schema.define(version: 20150821230410) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "screen_on_off"
+  end
+
+  create_table "concerto_identities", force: true do |t|
+    t.integer  "user_id"
+    t.string   "external_id"
+    t.string   "provider"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "concerto_plugins", force: true do |t|
@@ -96,7 +104,7 @@ ActiveRecord::Schema.define(version: 20150821230410) do
     t.datetime "updated_at"
   end
 
-  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "feeds", force: true do |t|
     t.string   "name"
@@ -110,7 +118,7 @@ ActiveRecord::Schema.define(version: 20150821230410) do
     t.text     "content_types"
   end
 
-  add_index "feeds", ["parent_id"], name: "index_feeds_on_parent_id"
+  add_index "feeds", ["parent_id"], name: "index_feeds_on_parent_id", using: :btree
 
   create_table "field_configs", force: true do |t|
     t.integer  "field_id"
@@ -148,12 +156,12 @@ ActiveRecord::Schema.define(version: 20150821230410) do
     t.string   "file_name"
     t.string   "file_type"
     t.integer  "file_size"
-    t.binary   "file_data",       limit: 10485760
+    t.binary   "file_data",       limit: 16777215
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "media", ["attachable_id", "attachable_type"], name: "index_media_on_attachable_id_and_attachable_type"
+  add_index "media", ["attachable_id", "attachable_type"], name: "index_media_on_attachable_id_and_attachable_type", using: :btree
 
   create_table "memberships", force: true do |t|
     t.integer  "user_id"
@@ -165,7 +173,7 @@ ActiveRecord::Schema.define(version: 20150821230410) do
     t.boolean  "receive_emails"
   end
 
-  add_index "memberships", ["receive_emails"], name: "index_memberships_on_receive_emails"
+  add_index "memberships", ["receive_emails"], name: "index_memberships_on_receive_emails", using: :btree
 
   create_table "pages", force: true do |t|
     t.string   "category"
@@ -257,7 +265,7 @@ ActiveRecord::Schema.define(version: 20150821230410) do
     t.string   "unconfirmed_email"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

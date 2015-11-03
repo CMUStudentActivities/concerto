@@ -6,3 +6,5 @@ group :development do
   gem "capistrano-rails"
   gem "capistrano-passenger"
 end
+
+gem "concerto_omniauth_shibboleth", :git => 'https://github.com/CMUStudentActivities/concerto-shibboleth-omniauth.git'
