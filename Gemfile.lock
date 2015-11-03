@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/CMUStudentActivities/concerto-shibboleth-omniauth.git
-  revision: 465db937a6c9c7f74a3091d3959c2fcfd9d4c7e0
+  revision: 87b2b40eef996c4ed8c2ff0c643baadbaf918169
   specs:
-    concerto_omniauth_shibboleth (0.0.1)
+    concerto_omniauth_shibboleth (0.0.2)
       concerto_identity (~> 0)
       omniauth-shibboleth (~> 1)
 
@@ -334,7 +334,7 @@ DEPENDENCIES
   concerto_frontend
   concerto_hardware
   concerto_iframe
-  concerto_omniauth_shibboleth!
+  concerto_omniauth_shibboleth (~> 0.0.2)!
   concerto_remote_video
   concerto_simple_rss
   concerto_weather
