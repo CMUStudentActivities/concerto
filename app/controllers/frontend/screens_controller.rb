@@ -114,7 +114,7 @@ class Frontend::ScreensController < ApplicationController
   # Get information required to setup the screen
   # and display the template with positions.
   def setup
-    headers['Access-Control-Allow-Origin'] = '*' unless !ConcertoConfig[:public_concerto]
+    allow_cors unless !ConcertoConfig[:public_concerto]
     @preview = params.has_key?(:preview) && params[:preview] == "true"
     begin
       @screen = Screen.find(params[:id])
@@ -155,8 +155,10 @@ class Frontend::ScreensController < ApplicationController
         end
       end
 
-      @screen.time_zone = ActiveSupport::TimeZone::MAPPING[@screen.time_zone]
+Rails.logger.debug("--frontend screencontroller setup is sending setup-key of #{@screen.frontend_cache_key}")
+      response.headers["X-Concerto-Frontend-Setup-Key"] = @screen.frontend_cache_key
 
+      @screen.time_zone = ActiveSupport::TimeZone::MAPPING[@screen.time_zone]
       if stale?(etag: @screen.frontend_cache_key, public: true)
       respond_to do |format|
         format.json {

@@ -17,7 +17,7 @@ class Frontend::ContentsController < ApplicationController
   end
 
   def index
-    headers['Access-Control-Allow-Origin'] = '*' unless !ConcertoConfig[:public_concerto]
+    allow_cors unless !ConcertoConfig[:public_concerto]
     require 'frontend_content_order'
 
     shuffle_config = FieldConfig.get(@screen, @field, 'shuffler') || DEFAULT_SHUFFLE
@@ -44,7 +44,9 @@ class Frontend::ContentsController < ApplicationController
       logger.warn e.message
     end
 
-    response.headers["X-Concerto-Frontend-Setup-Key"] = Digest::MD5.hexdigest(@screen.frontend_cache_key)
+Rails.logger.debug("--frontend contentscontroller index is sending setup-key of #{@screen.frontend_cache_key}")
+    response.headers["X-Concerto-Frontend-Setup-Key"] = @screen.frontend_cache_key
+    response.headers["ETag"] = Digest::MD5.hexdigest(@screen.frontend_cache_key + @content.collect{|e| e.id}.to_s)
 
     respond_to do |format|
       format.json {
