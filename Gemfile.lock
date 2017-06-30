@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/CMUStudentActivities/concerto-shibboleth-omniauth.git
+  remote: https://github.com/CMUStudentActivities/concerto-omniauth-shibboleth.git
   revision: 6dd8028cb6ef3c0f0ab4ced016a5928d68a80c24
   specs:
     concerto_omniauth_shibboleth (0.0.3)
