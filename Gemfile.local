@@ -7,4 +7,4 @@ group :development do
   gem "capistrano-passenger"
 end
 
-gem "concerto_omniauth_shibboleth", "~> 0.0.2", :git => 'https://github.com/CMUStudentActivities/concerto-shibboleth-omniauth.git'
+gem "concerto_omniauth_shibboleth", "~> 0.0.3", :git => 'https://github.com/CMUStudentActivities/concerto-shibboleth-omniauth.git'
