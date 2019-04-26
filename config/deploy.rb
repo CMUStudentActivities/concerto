@@ -25,11 +25,11 @@
 # deploy ALL=(ALL) NOPASSWD:/usr/bin/unlink, /usr/sbin/update-rc.d, /usr/bin/whoami, /usr/bin/env, /bin/sh, /usr/bin/passenger-config
 
 # config valid only for current version of Capistrano
-lock '3.4.0'
+lock '3.11.0'
 
 set :stage,       :production
 set :application, 'concerto'
-set :repo_url,    'https://github.com/concerto/concerto.git'
+set :repo_url,    'https://github.com/CMUStudentActivities/concerto.git'
 set :user,        'deploy'
 
 # uncomment this if you are deploying to a sub-uri
@@ -43,12 +43,12 @@ set :user,        'deploy'
 # this code will get the latest official release, unless a branch was specified in the command line
 # like: cap -S branch="master" deploy
 # master will deploy the most current development version
-set :branch, ENV['branch'] || `git tag`.split("\n").last
+# set :branch, ENV['branch'] || `git tag`.split("\n").last
 
 # Default deploy_to directory is /var/www/my_app_name
 # set :deploy_to, '/var/www/my_app_name'
 
-set :deploy_to, "/var/webapps/#{fetch(:application)}"    # make sure this exists and is writable
+set :deploy_to, "/srv/rails/#{fetch(:application)}"    # make sure this exists and is writable
 
 # Default value for :scm is :git
 # set :scm, :git
@@ -68,7 +68,7 @@ set :ssh_options, {
 }
 
 # Default value for :linked_files is []
-set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/concerto.yml')
+#set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/concerto.yml')
 
 # Default value for linked_dirs is []
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
